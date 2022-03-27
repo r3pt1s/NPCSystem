@@ -174,8 +174,6 @@ class NPCManager {
         ($ev = new NPCDespawnEvent($npc))->call();
         if (!$ev->isCancelled()) {
             if (($entity = $npc->getEntity()) !== null) {
-                $entity->getInventory()->clearAll();
-                $entity->getArmorInventory()->clearAll();
                 $entity->kill();
                 $entity->close();
                 $npc->setEntity(null);

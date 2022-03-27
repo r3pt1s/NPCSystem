@@ -9,6 +9,7 @@ use NPCSystem\session\Session;
 use pocketmine\entity\Human;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
+use pocketmine\event\entity\EntityDeathEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerJumpEvent;
@@ -100,6 +101,13 @@ class EventListener implements Listener {
                     }
                 }
             }
+        }
+    }
+
+    public function onEntityClose(EntityDeathEvent $event) {
+        if (($npc = NPCManager::getInstance()->getNPC($event->getEntity()->getId())) !== null) {
+            $event->setDrops([]);
+            $event->setXpDropAmount(0);
         }
     }
 }
