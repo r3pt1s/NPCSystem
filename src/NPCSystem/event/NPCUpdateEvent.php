@@ -14,7 +14,7 @@ class NPCUpdateEvent extends Event implements Cancellable {
     private string $updateKey;
     private mixed $updateValue;
 
-    public function __construct(NPC $npc, string $updateKey, mixed $oldValue, mixed $updateValue) {
+    public function __construct(NPC $npc, string $updateKey, mixed $updateValue) {
         $this->npc = $npc;
         $this->updateKey = $updateKey;
         $this->updateValue = $updateValue;
