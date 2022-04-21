@@ -53,8 +53,10 @@ class EventListener implements Listener {
                 if ($trData->getActionType() == $trData::ACTION_INTERACT || $trData->getActionType() == $trData::ACTION_ITEM_INTERACT) {
                     if (($npc = NPCManager::getInstance()->getNPC($trData->getActorRuntimeId())) !== null) {
                         if (!Session::getInstance()->hasEntityWaitSession($player)) {
-                            $player->sendForm(new EditForm($npc, true));
-                            Session::getInstance()->addToEntityWaitSession($player);
+                            if ($player->hasPermission("npc.command")) {
+                                $player->sendForm(new EditForm($npc, true));
+                                Session::getInstance()->addToEntityWaitSession($player);
+                            }
                         }
                     }
                 }
